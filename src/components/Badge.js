@@ -8,9 +8,15 @@ background: #f7a25a;
 padding: 8px 13px;
 border-radius: 5px;
 `
+
 const Badge = (props) => {  
+
+  const toggleSelectedSkills = (skill) => {
+    props.toggleSelectedSkills(skill)
+  }
+
   return (
-    <BadgeDiv>
+    <BadgeDiv style={{ background: props.color? props.color : 'var(--color-primary)' }} onClick = {() => toggleSelectedSkills(props.text)}>
       {props.text}
     </BadgeDiv>
   )

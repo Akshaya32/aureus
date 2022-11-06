@@ -28,5 +28,15 @@ export const AppliedJobsModel = [
         "joblocation": "Singapore, Singapore",
         "status": "Accepted",
         "appliedduration": "2 weeks ago"
+      },
+      {
+        "id": 4,
+        "jobtitle": "Front End Developer",
+        "companyName": "Company A",
+        "jobexperience": "0-2 years",
+        "salaryrange": "$4500 - $7000",
+        "joblocation": "Singapore, Singapore",
+        "status": "Accepted",
+        "appliedduration": "2 weeks ago"
       }
 ]

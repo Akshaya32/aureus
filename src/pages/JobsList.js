@@ -1,12 +1,12 @@
 import React from 'react'
-import { PostedJobsModel } from '../models/PostedJobsModel';
+
 import AppliedJobsCard from '../components/AppliedJobsCard';
 
-const JobsList = ({selectedJob}) => {
+const JobsList = ({selectedJob, jobList}) => {
 
   return (
     <div>
-        {PostedJobsModel.map((job) => {
+        {jobList.map((job) => {
             return <AppliedJobsCard key = {job.id} jobDetails = {job} showStatus = 'false' selectedJob = {selectedJob} />
         })}
       

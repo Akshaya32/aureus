@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import {useLocation} from 'react-router-dom';
 import { HiOfficeBuilding, HiLocationMarker} from "react-icons/hi";
 import { BsStack } from "react-icons/bs";
+import ResumeDisplay from '../components/ResumeDisplay';
 import Badge from '../components/Badge';
 const JobTitleContainer = styled.div`
   height: min-content;
@@ -20,7 +21,10 @@ const JobCard = styled.div.attrs({
   padding: 30px;
 
 `
-const ResumeCard = styled(JobCard)`
+const ResumeContainer = styled(JobCard)`
+
+`
+const ResumeCard = styled.div`
 display: flex;
 justify-content: space-between;
 align-items:center;
@@ -34,6 +38,8 @@ margin: 0 8px;
 const BrowseJobs = () => {
   const locationstate = useLocation();
   const activeJob = locationstate.state;
+  const [selectedSkills, setSelectedSkills] = useState([]);
+  const[file, setFile] = useState('');
   //Form Elements
   const [qualification, setQualification] = useState("");
   const [yearattained, setYearattained] = useState("");
@@ -61,6 +67,26 @@ const BrowseJobs = () => {
       marginRight: '25px'
     }
   }
+  const toggleSelectedSkills = (skill) => {
+    const index = selectedSkills.indexOf(skill)
+    console.log(index)
+    if(index >= 0) {      
+     selectedSkills.splice(0,index);
+     return 'var(--color-primary)'
+   } else {
+     selectedSkills.push(skill)
+     console.log(selectedSkills)
+     return  'var(--color-secondary)' 
+   }
+  }
+  const isSkillSelected = (skill) => {
+    return selectedSkills.indexOf(skill) >= 0 ?  'var(--color-primary)' :  'var(--color-secondary)' 
+    
+  }
+  function handleChange(event) {
+    console.log(event.target.files[0])
+    setFile(event.target.files[0])
+  }
   return (
     <>
     <JobTitleContainer>
@@ -83,15 +109,26 @@ const BrowseJobs = () => {
 
     <InnerContainer>
       <form>
-        <ResumeCard>
-          <div className='left-align'>
-            <h3>Resume </h3>
-            <span className = ''>Include one resume with your application</span>
-          </div>
-          <div className='right-align'>
-            <button className='btn-primary'>Upload</button>
-          </div>
-        </ResumeCard>
+        <ResumeContainer>
+          <ResumeCard>
+            <div className='left-align'>
+              <h3>Resume </h3>
+              <span className = ''>Include one resume with your application</span>
+            </div>
+            <div className='right-align'>
+            <label htmlFor="file-upload" className="btn-primary">
+            Upload
+            </label>
+            <input id="file-upload" type="file" onChange={handleChange}/>
+            </div>
+          </ResumeCard>
+          <div className=''>
+              {file ? (
+                <ResumeDisplay file = {file} />
+              ) : ''}
+            </div>
+        </ResumeContainer>
+
         <JobCard>
           <div className='left-align'>
               <h3>Education </h3>
@@ -239,8 +276,8 @@ const BrowseJobs = () => {
             <h3>Skills </h3>
             <span className = ''>Add the skills you possess</span>
             <SkillContainer>  
-              {activeJob?.skills.map(skill => {
-                return (<Skill><Badge text={skill} /></Skill>)
+              {activeJob?.skills.map(skill => { 
+                return (<Skill><Badge text={skill} toggleSelectedSkills = {toggleSelectedSkills} color = {isSkillSelected(skill)}  /></Skill>)
               })}
             </SkillContainer>
           </div>

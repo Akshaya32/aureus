@@ -18,14 +18,19 @@ h4{
 .secondary-text{
     font-size: 1rem;
     margin: 5px 0;
-    color: var(--secondary-text);;
+    color: var(--secondary-text);
 }
 .form-control input{
     border-radius: 5px;
     border: none;
-    background: rgba(226, 226, 226 , 0.4);
+    background: var(--color-secondary);
     padding:10px;
     width: 60%
+}
+::placeholder { 
+    font-size: 0.9rem;
+    font-weight: 500;
+    color: #a1a1a1;
 }
 .CardContainer{
     width: 100%;
@@ -38,6 +43,9 @@ h4{
 }
 .row .col{
     flex: 1;
+}
+input[type="file"] {
+    display: none;
 }
 .is-active{
     color: var(--primary-text);

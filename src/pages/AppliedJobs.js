@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { AppliedJobsModel } from '../models/AppliedJobsModel';
 import AppliedJobsCard from '../components/AppliedJobsCard';
 const JobsContainer = styled.div`
-width: 65%;
+width: 55%;
 margin: 0 auto;
 `
 const AppliedJobs = () => {
@@ -11,7 +11,7 @@ const AppliedJobs = () => {
     <div>
         <JobsContainer>
         {AppliedJobsModel.map((job) => {
-            return <AppliedJobsCard key = {job.id} jobDetails = {job} showStatus = {true} />
+            return <AppliedJobsCard key = {job.id} jobDetails = {job} showStatus = {true} isJobs = {true}/>
         })}
         </JobsContainer>
     </div>

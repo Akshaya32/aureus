@@ -43,16 +43,16 @@ const Profile = () => {
               <span className='secondary-text'>{ProfileModel.email}</span>
           </div>
         </UserCard>
-        <DetailsCard>
-
-        </DetailsCard>
+        <div>
+          <h3>Resume</h3>
+        </div>
         <div>
           <h3>Education</h3>
-          <AppliedJobsCard jobDetails = {ProfileModel.education}/>
+          <AppliedJobsCard jobDetails = {ProfileModel.education} isEducation = {true} showStatus = {true}/>
         </div>
         <div>
           <h3>Work Experience</h3>
-          <AppliedJobsCard jobDetails = {ProfileModel.workexperience}/>
+          <AppliedJobsCard jobDetails = {ProfileModel.workexperience} isJobs = {true}/>
         </div>
       
     </ProfileContainer>

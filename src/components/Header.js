@@ -32,6 +32,9 @@ const Header = () => {
             
         </LeftMenu>
         <RightMenu>
+        <Links>
+                <NavLink to='/signup' className={({ isActive }) => (isActive ? 'is-active' : 'is-inactive')}>Sign Up</NavLink>
+            </Links>
             <Links>
                 <NavLink to='/appliedJobs' className={({ isActive }) => (isActive ? 'is-active' : 'is-inactive')}>Applied Jobs</NavLink>
             </Links>

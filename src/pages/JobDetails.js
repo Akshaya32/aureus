@@ -14,19 +14,24 @@ const JobDetailsContainer = styled.div.attrs({
   padding: 30px;
   height: 80vh;
 `
-const LogoContainer = styled.div`
+const Container = styled.div`
 margin: 20px 0;
 min-height: 100px;
 display: flex;
 justify-content: space-between;
 `
-
+const SecondaryContainer = styled.div`
+margin: 30px 0;
+`
 const styles = {
   icons: {
     borderRadius: '10px',
     backgroundColor: "#267cc6",
     padding: "0 2em",
     color: '#fff'
+  },
+  skillsContainer: {
+    margin: '20px 0'
   },
   skillsbadge: {
     marginTop: '10px',
@@ -41,31 +46,30 @@ const JobDetails = ({activeJob}) => {
   return (
 
     <JobDetailsContainer>
-        <LogoContainer>
+        <Container>
           <div > <HiOfficeBuilding className='icon-primary' style={styles.icons}/> </div>
           <div>
             <button className='btn-primary' onClick={goToBrowse}>Apply</button>
           </div>
-        </LogoContainer>
-        <LogoContainer>
+        </Container>
+        <Container>
           <div>
             <h3>{activeJob.jobtitle}</h3>
             <span className='primary-text'>{activeJob.companyName}</span>
           </div>
-          <div>
-
-          </div>
-        </LogoContainer>
-        <div className='jobDescription'>
+        </Container>
+        <SecondaryContainer >
           <h4>Job Description</h4>
           <p className='primary-text'>{activeJob.jobdescription}</p>
-        </div>
-        <div className='skills'>
+        </SecondaryContainer>
+        <SecondaryContainer >
           <h4>Skills</h4>
+          <div style={styles.skillsContainer}>
           {activeJob?.skills?.map(skill => {
             return <span style = {styles.skillsbadge}><Badge text= {skill}/></span>
           })}
-        </div>
+          </div>
+        </SecondaryContainer>
     </JobDetailsContainer>
   )
 }

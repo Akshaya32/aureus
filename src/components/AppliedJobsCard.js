@@ -1,14 +1,15 @@
 import React from 'react';
-import { HiOfficeBuilding } from "react-icons/hi";
 import styled from 'styled-components';
 import Badge from './Badge';
-
+import { HiOfficeBuilding, HiLocationMarker, HiCurrencyDollar} from "react-icons/hi";
+import { BsStack } from "react-icons/bs";
 const Card = styled.div.attrs({
   className : 'CardContainer',
 })`
   margin: 15px 0;
   padding: 20px;
   display: flex;
+  min-height: 80px;
   justify-content: space-between;
 `
 const CardLogo = styled.div`
@@ -23,6 +24,7 @@ display: flex;
 
 `
 const RightMenu = styled.div`
+text-align: center;
 position: relative;
 `
 
@@ -36,8 +38,14 @@ const AppliedJobsCard = (props) => {
       color: '#fff'
     },
     badgeAlign: {
-      position: 'absolute',
-      bottom: '0'
+
+    },
+    secondaryText: {
+      margin: '0 5px'
+    },
+    secIcon: {
+      fontSize: '1rem',
+      margin: '0 5px'
     }
   }
   const selectedJob = () => {
@@ -47,15 +55,25 @@ const AppliedJobsCard = (props) => {
     <Card onClick = {selectedJob}>
       <LeftMenu>
       <CardLogo > <HiOfficeBuilding className='icon-primary' style={styles.icons}/> </CardLogo>
+      {props?.isEducation === true ? (
+        <CardDescription>
+          <h4>{props?.jobDetails?.degree}</h4>
+          <p className='secondary-text'>{props?.jobDetails?.university}</p>
+        </CardDescription>
+      ): ( 
       <CardDescription>
         <h4>{props?.jobDetails?.jobtitle}</h4>
         <p className='secondary-text'>{props?.jobDetails?.companyName}</p>
         <p className='secondary-text'>{props?.jobDetails?.company}</p>
-        <p className='secondary-text'>{props?.jobDetails?.jobexperience} {props?.jobDetails?.salaryrange}</p>
+        <p className='secondary-text'>
+          {(props?.jobDetails?.jobexperience) ? <span style = {styles.secondaryText}><BsStack style = {styles.secIcon}/>{props?.jobDetails?.jobexperience}</span> : ''}
+          {(props?.jobDetails?.salaryrange) ? <span style = {styles.secondaryText}><HiCurrencyDollar style = {styles.secIcon} />{props?.jobDetails?.salaryrange}</span> : ''}
+        </p>
         <p className='secondary-text'>{props?.jobDetails?.joblocation}</p>
-        </CardDescription>
+        </CardDescription>)
+        }
       </LeftMenu>
-      {props?.showStatus === true ? 
+      {(props?.isJobs === true && props?.showStatus === true)? 
       (
       <RightMenu>
         <p className='secondary-text'>{props.jobDetails.appliedduration}</p>
@@ -64,7 +82,11 @@ const AppliedJobsCard = (props) => {
         </div>
         </RightMenu>
       ): ' '}
-
+      {(props?.isEducation === true && props?.showStatus === true) ? (
+        <RightMenu>
+            <p className='secondary-text'>{props.jobDetails.period}</p>
+        </RightMenu>
+      ) : ''}
     </Card>
   )
 }
