@@ -26,7 +26,7 @@ export const AppliedJobsModel = [
         "jobexperience": "0-2 years",
         "salaryrange": "$4500 - $7000",
         "joblocation": "Singapore, Singapore",
-        "status": "Accepted",
+        "status": "Rejected",
         "appliedduration": "2 weeks ago"
       },
       {

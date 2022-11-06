@@ -1,7 +1,7 @@
 import React from 'react'
 import styled from 'styled-components';
 import { NavLink } from "react-router-dom";
-
+import { FaUserCircle } from "react-icons/fa";
 
 const Nav = styled.div`
     font-weight: 500;
@@ -24,12 +24,18 @@ const Links = styled.span`
 const Profile = styled.div`
     margin: 0 30px ;
 `
+const styles = {
+    icon: {
+        color: 'var(--primary-text)',
+        marginRight: '5px',
+        fontSize: '1.4rem'
+    }
+}
 const Header = () => {
   return (
     <Nav>
         <LeftMenu>
-        <NavLink to='/browseJobs' className='is-active'>QuickJobs</NavLink>
-            
+        <NavLink to='/browseJobs' className='is-active'>QuickJobs</NavLink>    
         </LeftMenu>
         <RightMenu>
         <Links>
@@ -42,7 +48,7 @@ const Header = () => {
                 <NavLink to='/browseJobs' className={({ isActive }) => (isActive ? 'is-active' : 'is-inactive')}>Browse Jobs</NavLink>
             </Links>
             <Profile>
-                <NavLink to ='/profile/1' >Jonathan Doe</NavLink>
+            <FaUserCircle style={styles.icon}/> <NavLink to ='/profile/1' >Jonathan Doe</NavLink>
             </Profile>
         </RightMenu>
     </Nav>

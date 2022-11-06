@@ -8,6 +8,7 @@ const SignUpContainer = styled.div`
 const LogoContainer = styled.div`
 margin-top: 70px;
 text-align: center;
+color: var(--primary-text);
 `
 const FormContainer = styled.div.attrs({
     className : 'CardContainer',

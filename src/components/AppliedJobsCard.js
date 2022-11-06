@@ -24,8 +24,9 @@ display: flex;
 
 `
 const RightMenu = styled.div`
-text-align: center;
-position: relative;
+display: flex;
+flex-direction: column;
+justify-content: space-around;
 `
 
 
@@ -78,7 +79,7 @@ const AppliedJobsCard = (props) => {
       <RightMenu>
         <p className='secondary-text'>{props.jobDetails.appliedduration}</p>
         <div style = {styles.badgeAlign}>
-        <Badge text = {props.jobDetails.status}/>
+        <Badge text = {props.jobDetails.status} color = {props.color}/>
         </div>
         </RightMenu>
       ): ' '}
