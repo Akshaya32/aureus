@@ -5,9 +5,9 @@ import { createGlobalStyle } from 'styled-components';
 import AppliedJobs from './pages/AppliedJobs';
 import BrowseJobs from './pages/BrowseJobs';
 import Profile from './pages/Profile';
-import { BrowserRouter,  Routes, Route } from 'react-router-dom';
+import { BrowserRouter,  Routes, Route, Navigate } from 'react-router-dom';
 import BrowsePage from './pages/BrowsePage';
-import Signup from './pages/Signup';
+import Signup from './pages/UserLogin';
 const GlobalStyles = createGlobalStyle`
   html {
     --primary-text: #3083cb;
@@ -26,9 +26,11 @@ function App() {
 <BrowserRouter>
 <Header />
        <Routes>
-        <Route exact path="/browseJobs" element={<BrowsePage />}/>
+          <Route path="/" element={<Navigate replace to="/browseJobs" />} />
+          <Route exact path="/browseJobs" element={<BrowsePage />}/>
 		      <Route exact path="/appliedJobs" element={<AppliedJobs />}/>
           <Route exact path = "/signup" element={<Signup />} />
+          <Route exact path = "/login" element={<Signup />} />
 				  <Route exact path="/browseJobs/applyJob/:id" element={<BrowseJobs />}/>
           <Route exact path="/profile/:id" element={<Profile />}/>
 	    </Routes>

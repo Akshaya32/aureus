@@ -1,5 +1,7 @@
 import styled from "styled-components"
 import {useState} from 'react';
+import { useLocation } from 'react-router-dom'
+
 const SignUpContainer = styled.div`
     width: 40%;
     margin: 0 auto;
@@ -44,18 +46,23 @@ width: 90%;
 `
 
 const Signup = () => {
+    let location = useLocation();
+    console.log(location.pathname);
     const [firstname, setFirstname] = useState("");
     const [lastname, setLastname] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const buttonText = location.pathname === '/login' ? "Login" : "Sign Up";
   return (
+    
     <SignUpContainer>
         <LogoContainer>
             <h3>QuickJobs</h3>
         </LogoContainer>
         <FormContainer>
             <form>
-                <FormRow>
+                {location.pathname === '/signup' ? (
+                    <><FormRow>
                     <FormInput
                         type="text"
                         name="firstname"
@@ -75,6 +82,8 @@ const Signup = () => {
                         required
                     />
                 </FormRow>
+                </>
+                ) : ''}
                 <FormRow>
                     <FormInput
                         type="text"
@@ -96,7 +105,7 @@ const Signup = () => {
                     />
                 </FormRow>
                 <FormRow>
-                    <button className="btn-primary">Sign Up</button>
+                    <button className="btn-primary">{buttonText}</button>
                 </FormRow>
             </form>
         </FormContainer>

@@ -2,6 +2,7 @@ import React from 'react'
 import styled from 'styled-components';
 import { NavLink } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
+import { useLocation } from 'react-router-dom'
 
 const Nav = styled.div`
     font-weight: 500;
@@ -32,24 +33,36 @@ const styles = {
     }
 }
 const Header = () => {
+    let location = useLocation();
+    console.log(location.pathname);
   return (
     <Nav>
         <LeftMenu>
         <NavLink to='/browseJobs' className='is-active'>QuickJobs</NavLink>    
         </LeftMenu>
         <RightMenu>
-        <Links>
+            {location.pathname === '/login' ? (            
+            <Links>
                 <NavLink to='/signup' className={({ isActive }) => (isActive ? 'is-active' : 'is-inactive')}>Sign Up</NavLink>
             </Links>
+            ):(
             <Links>
-                <NavLink to='/appliedJobs' className={({ isActive }) => (isActive ? 'is-active' : 'is-inactive')}>Applied Jobs</NavLink>
+                <NavLink to='/login' className={({ isActive }) => (isActive ? 'is-active' : 'is-inactive')}>Login</NavLink>
             </Links>
-            <Links>
-                <NavLink to='/browseJobs' className={({ isActive }) => (isActive ? 'is-active' : 'is-inactive')}>Browse Jobs</NavLink>
-            </Links>
-            <Profile>
-            <FaUserCircle style={styles.icon}/> <NavLink to ='/profile/1' >Jonathan Doe</NavLink>
-            </Profile>
+            )}
+            {(location.pathname === '/signup' || location.pathname === '/login') ? '' : (
+                <>
+                    <Links>
+                        <NavLink to='/appliedJobs' className={({ isActive }) => (isActive ? 'is-active' : 'is-inactive')}>Applied Jobs</NavLink>
+                    </Links>
+                    <Links>
+                        <NavLink to='/browseJobs' className={({ isActive }) => (isActive ? 'is-active' : 'is-inactive')}>Browse Jobs</NavLink>
+                    </Links>
+                    <Profile>
+                        <FaUserCircle style={styles.icon}/> <NavLink to ='/profile/1' >Jonathan Doe</NavLink>
+                    </Profile>
+                </>
+            )}
         </RightMenu>
     </Nav>
   )

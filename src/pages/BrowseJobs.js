@@ -44,7 +44,13 @@ const BrowseJobs = () => {
   const [qualification, setQualification] = useState("");
   const [yearattained, setYearattained] = useState("");
   const [schoolname, setSchoolname] = useState("");
+  const [companyname, setCompanyname] = useState("");
   const [qualificationname, setQualificationname] = useState("");
+  const [jobtitle, setJobtitle] = useState("");
+  const [employmenttype, setEmploymenttype] = useState("");
+  const [employmentperiod, setEmploymentperiod] = useState("");
+  const [workdescription, setWorkdescription] = useState("");
+
   const styles = {
     icons: {
       borderRadius: '10px',
@@ -65,6 +71,12 @@ const BrowseJobs = () => {
       display: 'inline-block',
       marginTop: '25px',
       marginRight: '25px'
+    },
+    footer: {
+      marginTop: '30px',
+      display: 'flex',
+      alignItems: 'center',
+      justifyContent: 'center'
     }
   }
   const toggleSelectedSkills = (skill) => {
@@ -84,8 +96,10 @@ const BrowseJobs = () => {
     
   }
   function handleChange(event) {
-    console.log(event.target.files[0])
     setFile(event.target.files[0])
+  }
+  function deleteFile(){
+    setFile()
   }
   return (
     <>
@@ -124,7 +138,7 @@ const BrowseJobs = () => {
           </ResumeCard>
           <div className=''>
               {file ? (
-                <ResumeDisplay file = {file} />
+                <ResumeDisplay file = {file} deleteFile = {deleteFile} />
               ) : ''}
             </div>
         </ResumeContainer>
@@ -183,7 +197,7 @@ const BrowseJobs = () => {
                         name="qualificationname"
                         value={qualificationname}
                         onChange={e => setQualificationname(e.target.value)}
-                        placeholder="Year"
+                        placeholder="Enter Qualification"
                         required
                       />
                   </label>
@@ -202,10 +216,10 @@ const BrowseJobs = () => {
                   <p>Company Name</p>
                         <input
                           type="text"
-                          name="qualification"
-                          value={qualification}
-                          onChange={e => setQualification(e.target.value)}
-                          placeholder="Qualification"
+                          name="companyname"
+                          value={companyname}
+                          onChange={e => setCompanyname(e.target.value)}
+                          placeholder="Company Name"
                           required
                         />
                     </label>
@@ -215,10 +229,10 @@ const BrowseJobs = () => {
                   <p>Job Title</p>
                       <input
                         type="text"
-                        name="yearattained"
-                        value={yearattained}
-                        onChange={e => setYearattained(e.target.value)}
-                        placeholder="Year"
+                        name="jobtitle"
+                        value={jobtitle}
+                        onChange={e => setJobtitle(e.target.value)}
+                        placeholder="Job Title"
                         required
                       />
                   </label>
@@ -230,10 +244,10 @@ const BrowseJobs = () => {
                 <p>Employment Type</p>
                       <input
                         type="text"
-                        name="schoolname"
-                        value={schoolname}
-                        onChange={e => setSchoolname(e.target.value)}
-                        placeholder="Enter School Name"
+                        name="employmenttype"
+                        value={employmenttype}
+                        onChange={e => setEmploymenttype(e.target.value)}
+                        placeholder="Enter Employment Type"
                         required
                       />
                   </label>
@@ -243,27 +257,28 @@ const BrowseJobs = () => {
                 <p>Employment Period</p>
                       <input
                         type="text"
-                        name="qualificationname"
-                        value={qualificationname}
-                        onChange={e => setQualificationname(e.target.value)}
-                        placeholder="Year"
+                        name="employmentperiod"
+                        value={employmentperiod}
+                        onChange={e => setEmploymentperiod(e.target.value)}
+                        placeholder="Employment Period"
                         required
                       />
                   </label>
               </div>
 
             </div>
-            <div className='row'>
+            <div className>
               <div className = 'form-control'>
                 <label>
                 <p>Work Description (Optional)</p>
-                      <input
+                {/* <textarea id="txtArea" rows="8" cols="90"></textarea> */}
+                      <textarea
+                      rows="8" cols="90"
                         type="text"
-                        name="qualificationname"
-                        value={qualificationname}
-                        onChange={e => setQualificationname(e.target.value)}
-                        placeholder="Year"
-                        required
+                        name="workdescription"
+                        value={workdescription}
+                        onChange={e => setWorkdescription(e.target.value)}
+                        placeholder="Enter Work Description"
                       />
                   </label>
               </div>
@@ -282,6 +297,9 @@ const BrowseJobs = () => {
             </SkillContainer>
           </div>
         </JobCard>
+        <div style= {styles.footer}>
+          <button className = 'btn-primary'>Submit</button>
+        </div>
       </form>
 
     </InnerContainer>
