@@ -34,7 +34,6 @@ const styles = {
 }
 const Header = () => {
     let location = useLocation();
-    console.log(location.pathname);
   return (
     <Nav>
         <LeftMenu>

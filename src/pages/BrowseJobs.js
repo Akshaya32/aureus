@@ -38,7 +38,7 @@ margin: 0 8px;
 const BrowseJobs = () => {
   const locationstate = useLocation();
   const activeJob = locationstate.state;
-  const [selectedSkills, setSelectedSkills] = useState([]);
+  const [applyJob, setApplyJob] = useState(activeJob)
   const[file, setFile] = useState('');
   //Form Elements
   const [qualification, setQualification] = useState("");
@@ -79,22 +79,7 @@ const BrowseJobs = () => {
       justifyContent: 'center'
     }
   }
-  const toggleSelectedSkills = (skill) => {
-    const index = selectedSkills.indexOf(skill)
-    console.log(index)
-    if(index >= 0) {      
-     selectedSkills.splice(0,index);
-     return 'var(--color-primary)'
-   } else {
-     selectedSkills.push(skill)
-     console.log(selectedSkills)
-     return  'var(--color-secondary)' 
-   }
-  }
-  const isSkillSelected = (skill) => {
-    return selectedSkills.indexOf(skill) >= 0 ?  'var(--color-primary)' :  'var(--color-secondary)' 
-    
-  }
+
   function handleChange(event) {
     setFile(event.target.files[0])
   }
@@ -109,14 +94,14 @@ const BrowseJobs = () => {
           <div > <HiOfficeBuilding className='icon-primary' style={styles.icons}/> </div>
           <div style={styles.jobdescription} >
             <span className='secondary-text'>Application for</span>
-            <h3 style={styles.jobtitle}>{activeJob.jobtitle}</h3>
-            <span className='secondary-text'>{activeJob.companyName}</span>
+            <h3 style={styles.jobtitle}>{applyJob.jobtitle}</h3>
+            <span className='secondary-text'>{applyJob.companyName}</span>
           </div>
         </div>
         <div>
-          <p style={styles.jobdetails} className = 'secondary-text'><HiLocationMarker />{activeJob.joblocation}</p>
-          <p style={styles.jobdetails} className = 'secondary-text'>{activeJob.jobexperience}</p>
-          <p style={styles.jobdetails} className = 'secondary-text'><BsStack />{activeJob.salaryrange}</p>
+          <p style={styles.jobdetails} className = 'secondary-text'><HiLocationMarker />{applyJob.joblocation}</p>
+          <p style={styles.jobdetails} className = 'secondary-text'>{applyJob.jobexperience}</p>
+          <p style={styles.jobdetails} className = 'secondary-text'><BsStack />{applyJob.salaryrange}</p>
         </div>
       </InnerContainer>
     </JobTitleContainer>
@@ -290,8 +275,8 @@ const BrowseJobs = () => {
             <h3>Skills </h3>
             <span className = ''>Add the skills you possess</span>
             <SkillContainer>  
-              {activeJob?.skills.map(skill => { 
-                return (<Skill><Badge text={skill} toggleSelectedSkills = {toggleSelectedSkills} color = {isSkillSelected(skill)}  /></Skill>)
+              {applyJob?.skills.map((skill) => { 
+                return (<Skill><Badge key={skill.id} text={skill.skill}  /></Skill>)
               })}
             </SkillContainer>
           </div>

@@ -44,10 +44,13 @@ border: 1px solid var(--color-secondary);
 padding:15px;
 width: 90%;
 `
-
+const styles = {
+    button: {
+        width: '95%'
+    }
+}
 const Signup = () => {
     let location = useLocation();
-    console.log(location.pathname);
     const [firstname, setFirstname] = useState("");
     const [lastname, setLastname] = useState("");
     const [email, setEmail] = useState("");
@@ -105,7 +108,7 @@ const Signup = () => {
                     />
                 </FormRow>
                 <FormRow>
-                    <button className="btn-primary">{buttonText}</button>
+                    <button className="btn-primary" style = {styles.button}>{buttonText}</button>
                 </FormRow>
             </form>
         </FormContainer>

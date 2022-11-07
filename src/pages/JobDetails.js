@@ -66,7 +66,7 @@ const JobDetails = ({activeJob}) => {
           <h4>Skills</h4>
           <div style={styles.skillsContainer}>
           {activeJob?.skills?.map(skill => {
-            return <span style = {styles.skillsbadge}><Badge text= {skill}/></span>
+            return <span key={skill.id} style = {styles.skillsbadge}><Badge text= {skill.skill}/></span>
           })}
           </div>
         </SecondaryContainer>
