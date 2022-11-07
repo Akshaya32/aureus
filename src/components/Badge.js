@@ -10,11 +10,9 @@ border-radius: 5px;
 `
 
 const Badge = (props) => {  
-
   const toggleSelectedSkills = (skill) => {
     props.toggleSelectedSkills(skill)
   }
-  console.log(props)
   return (
 
     <BadgeDiv style={{ background: props.color? props.color : 'var(--color-primary)' }} onClick = {() => toggleSelectedSkills(props.text)}>

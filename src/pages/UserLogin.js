@@ -86,7 +86,7 @@ const Signup = () => {
                 ) : ''}
                 <FormRow>
                     <FormInput
-                        type="text"
+                        type="email"
                         name="email"
                         value={email}
                         onChange={e => setEmail(e.target.value)}
@@ -96,7 +96,7 @@ const Signup = () => {
                 </FormRow>
                 <FormRow>
                     <FormInput
-                        type="text"
+                        type="password"
                         name="password"
                         value={password}
                         onChange={e => setPassword(e.target.value)}

@@ -271,7 +271,6 @@ const BrowseJobs = () => {
               <div className = 'form-control'>
                 <label>
                 <p>Work Description (Optional)</p>
-                {/* <textarea id="txtArea" rows="8" cols="90"></textarea> */}
                       <textarea
                       rows="8" cols="90"
                         type="text"
